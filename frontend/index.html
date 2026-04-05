@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personalized Dense IR</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <h1>Personalized Dense IR System</h1>
+  <p>Two-stage retrieval · ColBERT re-ranking · Adaptive user model</p>
+</header>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="card">
+      <label class="field-label">User</label>
+      <select id="user-select">
+        <option value="anonymous">New user (no history)</option>
+        <option value="tech_user">Tech user</option>
+        <option value="science_user">Science user</option>
+        <option value="medical_user">Medical user</option>
+      </select>
+
+      <label class="field-label" style="margin-top:16px">Method</label>
+      <div class="method-btns">
+        <button class="method-btn" data-method="bm25">BM25</button>
+        <button class="method-btn" data-method="dense">Dense</button>
+        <button class="method-btn active" data-method="hybrid">Hybrid</button>
+      </div>
+
+      <label class="field-label" style="margin-top:16px">Results</label>
+      <select id="topk-select">
+        <option value="5">5</option>
+        <option value="10" selected>10</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+
+    <div class="card" id="alpha-card" style="display:none">
+      <div class="field-label">Alpha (α)</div>
+      <div class="alpha-display" id="alpha-val">—</div>
+      <div class="alpha-bar-bg"><div class="alpha-bar" id="alpha-bar"></div></div>
+      <div class="alpha-label" id="alpha-label"></div>
+    </div>
+
+    <div class="card" id="pipeline-card" style="display:none">
+      <div class="field-label">Pipeline</div>
+      <div class="pipeline-row">
+        <span class="stage-label">Stage 1 (FAISS)</span>
+        <span class="stage-val" id="s1-count">—</span>
+      </div>
+      <div class="pipeline-row">
+        <span class="stage-label">Stage 2 (ColBERT)</span>
+        <span class="stage-val" id="s2-count">—</span>
+      </div>
+      <div class="pipeline-row">
+        <span class="stage-label">Latency</span>
+        <span class="stage-val" id="latency-val">—</span>
+      </div>
+    </div>
+
+    <div class="card" id="profile-card">
+      <div class="field-label">User profile</div>
+      <div id="profile-info" style="font-size:13px;color:var(--text-muted)">No clicks yet</div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="search-bar">
+      <input id="query-input" type="text"
+             placeholder="Enter a query — e.g. 'effects of climate change on ocean biodiversity'"/>
+      <button id="search-btn" onclick="doSearch()">Search</button>
+    </div>
+
+    <div id="status" class="status"></div>
+    <div id="results"></div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/search.js"></script>
+</body>
+</html>

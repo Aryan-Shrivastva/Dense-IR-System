@@ -6,17 +6,6 @@ __pycache__/
 venv/
 env/
 
-# Data and indexes (too large for git)
-indexes/*.bin
-indexes/*.pkl
-data/*.csv
-data/*.tsv
-data/*.json
-data/userdata.db
-models/
-
-# Environment
-.env
 
 # Jupyter
 .ipynb_checkpoints/

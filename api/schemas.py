@@ -38,6 +38,7 @@ class SearchResponse(BaseModel):
     stage1_count:   int
     stage2_count:   int
     token_weights:  List[dict]
+    stage1_all_scores: List[float] = Field(default_factory=list, description="ColBERT/MaxSim scores for all stage-1 candidates for score distribution chart")
 
 
 class ClickRequest(BaseModel):

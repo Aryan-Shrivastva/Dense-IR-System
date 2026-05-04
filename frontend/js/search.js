@@ -33,8 +33,7 @@ async function doSearch() {
     lastResponse = data;
     renderResults(data, userId);
     updateSidebar(data);
-    // dispatch event for dashboard if open
-    window.dispatchEvent(new CustomEvent("searchComplete", { detail: data }));
+    // dispatch event for dashboard if open (after lastResponse is set)
   } catch (e) {
     document.getElementById("status").textContent =
       "Error: make sure the API is running. " + e.message;
@@ -118,17 +117,12 @@ async function handleClick(result, userId, card) {
 }
 
 function updateSidebar(data) {
-  document.getElementById("alpha-card").style.display = "block";
   document.getElementById("pipeline-card").style.display = "block";
-
-  const alphaPct = ((data.alpha - 0.3) / 0.6 * 100).toFixed(0);
-  document.getElementById("alpha-val").textContent = data.alpha.toFixed(2);
-  document.getElementById("alpha-bar").style.width = alphaPct + "%";
-  document.getElementById("alpha-label").textContent = data.alpha_label;
-
   document.getElementById("s1-count").textContent = data.stage1_count + " docs";
   document.getElementById("s2-count").textContent = data.stage2_count + " docs";
   document.getElementById("latency-val").textContent = data.latency_ms + "ms";
+  // Dispatch event so charts.js can render alpha blend + ColBERT distribution
+  window.dispatchEvent(new CustomEvent("searchComplete", { detail: data }));
 }
 
 async function updateProfileCard(userId) {

@@ -40,8 +40,8 @@ def compute_dynamic_alpha(
 def score_variance_category(alpha: float) -> str:
     """Human-readable label for the UI."""
     if alpha >= 0.75:
-        return "high semantic confidence — trusting ranker"
+        return "semantic dominant"
     elif alpha >= 0.5:
-        return "moderate confidence — balanced blend"
+        return "balanced"
     else:
-        return "low confidence — personalizing for you"
+        return "user-driven"

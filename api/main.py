@@ -4,15 +4,18 @@ Loads all models at startup — not per request.
 """
 
 import os
+
+# Disable SSL verification for HuggingFace on restricted networks
+os.environ["HF_INSECURE_SSL"] = "1"
+os.environ["HF_HUB_DISABLE_SSL_VERIFY"] = "1"
+
 import pickle
 from contextlib import asynccontextmanager
 
 from dotenv import load_dotenv
-
 load_dotenv()
 
 from src.hf_insecure_ssl import apply_if_configured
-
 apply_if_configured()
 
 from fastapi import FastAPI

@@ -59,7 +59,7 @@ def download_corpus():
     df = df[df["body"].str.len() > 50].reset_index(drop=True)
     out = os.path.join(DATA_DIR, "corpus.csv")
     df.to_csv(out, index=False)
-    print(f"Saved {len(df)} passages → {out}")
+    print(f"Saved {len(df)} passages -> {out}")
     return df
 
 

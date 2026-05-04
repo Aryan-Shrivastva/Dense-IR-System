@@ -3,50 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>IR Dashboard</title>
-<link rel="stylesheet" href="css/style.css">
+<title>Dashboard</title>
+<link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
 <header>
-  <h1>Live Analytics Dashboard</h1>
-  <p>All charts update in real time from the backend</p>
-  <nav><a href="index.html">← Back to search</a></nav>
+  <h1>Analytics</h1>
+  <a href="index.html">Search</a>
 </header>
 
 <div class="dashboard-grid">
-  <div class="metric-card"><div class="metric-label">Total searches</div><div class="metric-val" id="d-searches">—</div></div>
-  <div class="metric-card"><div class="metric-label">Total clicks</div><div class="metric-val" id="d-clicks">—</div></div>
-  <div class="metric-card"><div class="metric-label">Avg alpha</div><div class="metric-val" id="d-alpha">—</div></div>
-  <div class="metric-card"><div class="metric-label">Avg latency</div><div class="metric-val" id="d-latency">—</div></div>
+  <div class="metric-card">
+    <div class="metric-label">Searches</div>
+    <div class="metric-val" id="d-searches">--</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-label">Clicks</div>
+    <div class="metric-val" id="d-clicks">--</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-label">Avg Alpha</div>
+    <div class="metric-val" id="d-alpha">--</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-label">Avg Latency</div>
+    <div class="metric-val" id="d-latency">--</div>
+  </div>
 </div>
 
 <div class="charts-grid">
-  <div class="chart-card" id="score-card">
-    <h3>ColBERT score distribution</h3>
+  <div class="chart-card">
+    <h3>ColBERT Score Distribution</h3>
     <p>MaxSim scores for last query</p>
-    <div style="position:relative;height:200px"><canvas id="scoreChart"></canvas></div>
+    <div style="height:180px;position:relative"><canvas id="scoreChart"></canvas></div>
   </div>
-
-  <div class="chart-card" id="blend-card">
-    <h3>Semantic vs user blend</h3>
-    <p>Dynamic alpha per query</p>
-    <div style="position:relative;height:200px"><canvas id="blendChart"></canvas></div>
+  <div class="chart-card">
+    <h3>Alpha Blend</h3>
+    <p>Semantic vs user weight</p>
+    <div style="height:180px;position:relative"><canvas id="blendChart"></canvas></div>
   </div>
-
-  <div class="chart-card full" id="rank-card">
-    <h3>Score comparison — top 10 results</h3>
-    <p>Semantic score vs final hybrid score</p>
-    <div style="position:relative;height:220px"><canvas id="rankChart"></canvas></div>
+  <div class="chart-card full">
+    <h3>Semantic vs Hybrid Scores</h3>
+    <p>Per-result comparison</p>
+    <div style="height:200px;position:relative"><canvas id="rankChart"></canvas></div>
   </div>
-
-  <div class="chart-card" id="token-card">
-    <h3>Query token weights</h3>
+  <div class="chart-card">
+    <h3>Query Token Weights</h3>
     <p>ColBERT MaxSim per token</p>
     <div id="token-grid" class="token-grid"></div>
   </div>
-
-  <div class="chart-card" id="queries-card">
-    <h3>Top queries</h3>
+  <div class="chart-card">
+    <h3>Top Queries</h3>
     <p>Most frequent searches</p>
     <div id="top-queries"></div>
   </div>

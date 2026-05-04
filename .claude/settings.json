@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./venv/Scripts/pip.exe install *)",
+      "Bash(./venv/Scripts/python.exe -c ' *)",
+      "Bash(curl -s http://127.0.0.1:8000/api/health)",
+      "Bash(curl -s -X POST http://127.0.0.1:8000/api/search -H \"Content-Type: application/json\" -d '{\"query\":\"neural networks deep learning\",\"user_id\":\"anonymous\",\"method\":\"hybrid\",\"top_k\":3}')",
+      "Bash(python -c ' *)",
+      "Bash(curl -s -X POST http://127.0.0.1:8000/api/search -H \"Content-Type: application/json\" -d '{\"query\":\"neural networks deep learning\",\"user_id\":\"anonymous\",\"method\":\"bm25\",\"top_k\":3}')",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f'BM25 mode: stage1={d[\\\\\"stage1_count\\\\\"]}, stage2={d[\\\\\"stage2_count\\\\\"]}, alpha={d[\\\\\"alpha\\\\\"]}'\\); [print\\(f'  #{r[\\\\\"rank\\\\\"]} {r[\\\\\"title\\\\\"][:60]} score={r[\\\\\"final_score\\\\\"]:.3f}'\\) for r in d['results']]\")",
+      "Bash(curl -s -X POST http://127.0.0.1:8000/api/search -H \"Content-Type: application/json\" -d '{\"query\":\"climate change effects\",\"user_id\":\"anonymous\",\"method\":\"bm25\",\"top_k\":3}')",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f'BM25 OK: alpha={d[\\\\\"alpha\\\\\"]} s1={d[\\\\\"stage1_count\\\\\"]} s2={d[\\\\\"stage2_count\\\\\"]}'\\); [print\\(f'  #{r[\\\\\"rank\\\\\"]} {r[\\\\\"title\\\\\"][:60]}'\\) for r in d['results']]\")",
+      "Bash(curl -s -X POST http://127.0.0.1:8000/api/search -H \"Content-Type: application/json\" -d '{\"query\":\"climate change effects\",\"user_id\":\"anonymous\",\"method\":\"dense\",\"top_k\":3}')",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f'Dense OK: alpha={d[\\\\\"alpha\\\\\"]} s1={d[\\\\\"stage1_count\\\\\"]} s2={d[\\\\\"stage2_count\\\\\"]}'\\); [print\\(f'  #{r[\\\\\"rank\\\\\"]} {r[\\\\\"title\\\\\"][:60]}'\\) for r in d['results']]\")",
+      "Bash(pip show *)",
+      "Bash(python data/download_wikipedia.py --size 25000)"
+    ]
+  }
+}
